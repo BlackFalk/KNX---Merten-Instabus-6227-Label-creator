@@ -4,9 +4,6 @@ A web-based editor for creating custom labels for Merten Instabus 6227 multifunc
 
 Created with claude.ai
 
-![Merten 6227 Label Editor](screenshot.png)
-
-
 ![HTML Page](/interface.png)
 
 
