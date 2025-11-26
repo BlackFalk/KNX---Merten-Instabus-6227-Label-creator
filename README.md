@@ -6,6 +6,10 @@ Created with claude.ai
 
 ![Merten 6227 Label Editor](screenshot.png)
 
+
+![HTML Page](/interface.png)
+
+
 ## 📋 Overview
 
 The Merten Instabus 6227 is a KNX multifunction switch with 8 programmable buttons (4 left, 4 right). This editor allows you to create professional labeling stickers for the center recess of the switch.
