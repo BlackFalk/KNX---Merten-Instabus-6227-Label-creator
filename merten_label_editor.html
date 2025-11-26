@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Merten 6227 Etikett Editor - Multi-Label</title>
+    <title>Merten 6227 Label Editor - Multi-Label</title>
     <style>
         @page {
             size: A4;
@@ -292,24 +292,24 @@
     <div class="editor-panel">
         <h1>🏷️ Merten Instabus 6227 - Multi-Label Editor</h1>
         <div class="info-text">
-            <strong>Maße:</strong> 32 mm × 47 mm (3,2 cm × 4,7 cm)<br>
-            <strong>Anleitung:</strong> Erstelle mehrere Etiketten gleichzeitig. Aktiviere/Deaktiviere Zeilen mit Checkboxen.
+            <strong>Dimensions:</strong> 32 mm × 47 mm (3.2 cm × 4.7 cm)<br>
+            <strong>Instructions:</strong> Create multiple labels simultaneously. Enable/disable rows with checkboxes.
         </div>
         
         <div class="button-group">
-            <button class="btn-add" onclick="addLabel()">➕ Neues Etikett hinzufügen</button>
-            <button class="btn-secondary" onclick="updatePreview()">🔄 Vorschau aktualisieren</button>
-            <button class="btn-primary" onclick="window.print()">🖨️ Alle Etiketten drucken</button>
+            <button class="btn-add" onclick="addLabel()">➕ Add New Label</button>
+            <button class="btn-secondary" onclick="updatePreview()">🔄 Update Preview</button>
+            <button class="btn-primary" onclick="window.print()">🖨️ Print All Labels</button>
         </div>
         
         <div id="labelsContainer" class="labels-container">
-            <!-- Labels werden hier dynamisch hinzugefügt -->
+            <!-- Labels will be dynamically added here -->
         </div>
     </div>
     
     <div class="print-area">
         <div class="labels-grid" id="printPreview">
-            <!-- Vorschau wird hier erstellt -->
+            <!-- Preview will be created here -->
         </div>
     </div>
     
@@ -317,41 +317,41 @@
         const symbolPath = './Symbols/';
         let labelCounter = 0;
         
-        // Alle verfügbaren Symbole
+        // All available symbols
         const symbols = [
             { file: 'symbol1.png', name: '⚡ Power' },
-            { file: 'symbol2.png', name: '⭕ Kreis' },
+            { file: 'symbol2.png', name: '⭕ Circle' },
             { file: 'symbol3.png', name: '⚡|⭕' },
             { file: 'symbol4.png', name: '⚡|+' },
             { file: 'symbol5.png', name: '⭕|-' },
             { file: 'symbol6.png', name: '📶 Signal' },
             { file: 'symbol7.png', name: '🔽🔼' },
-            { file: 'symbol8.png', name: '🔼 Dreieck' },
-            { file: 'symbol9.png', name: '🔽 Dreieck' },
+            { file: 'symbol8.png', name: '🔼 Triangle Up' },
+            { file: 'symbol9.png', name: '🔽 Triangle Down' },
             { file: 'symbol10.png', name: '➕ Plus' },
             { file: 'symbol11.png', name: '➖ Minus' },
-            { file: 'symbol12.png', name: '🔼🔽 Pfeile' },
-            { file: 'symbol13.png', name: '⬆️ Pfeil' },
-            { file: 'symbol14.png', name: '⬇️ Pfeil' },
-            { file: 'symbol15.png', name: '💡 Glühbirne' },
-            { file: 'symbol16.png', name: '🔔 Glocke' },
-            { file: 'symbol17.png', name: '🔑 Schlüssel' },
-            { file: 'symbol18.png', name: '🌡️ Heizung' },
+            { file: 'symbol12.png', name: '🔼🔽 Arrows' },
+            { file: 'symbol13.png', name: '⬆️ Arrow Up' },
+            { file: 'symbol14.png', name: '⬇️ Arrow Down' },
+            { file: 'symbol15.png', name: '💡 Light Bulb' },
+            { file: 'symbol16.png', name: '🔔 Bell' },
+            { file: 'symbol17.png', name: '🔑 Key' },
+            { file: 'symbol18.png', name: '🌡️ Heating' },
             { file: 'symbol19.png', name: '🌡️ Thermometer' },
-            { file: 'symbol20.png', name: '🌀 Ventilator' },
-            { file: 'symbol21.png', name: '❗ Ausrufezeichen' },
-            { file: 'symbol22.png', name: '🔊 Lautsprecher' },
-            { file: 'symbol23.png', name: '🚪 Tür' },
-            { file: 'symbol24.png', name: '🏠 Haus' },
-            { file: 'symbol25.png', name: '🌙 Mond' },
-            { file: 'symbol26.png', name: '☀️ Sonne' },
-            { file: 'symbol27.png', name: '⏰ Uhr' },
+            { file: 'symbol20.png', name: '🌀 Fan' },
+            { file: 'symbol21.png', name: '❗ Exclamation' },
+            { file: 'symbol22.png', name: '🔊 Speaker' },
+            { file: 'symbol23.png', name: '🚪 Door' },
+            { file: 'symbol24.png', name: '🏠 House' },
+            { file: 'symbol25.png', name: '🌙 Moon' },
+            { file: 'symbol26.png', name: '☀️ Sun' },
+            { file: 'symbol27.png', name: '⏰ Clock' },
             { file: 'symbol28.png', name: '📺 Monitor' },
-            { file: 'symbol29.png', name: '🎵 Musik' },
-            { file: 'symbol30.png', name: '🔒 Schloss' },
-            { file: 'symbol31.png', name: '🔓 Offen' },
-            { file: 'symbol32.png', name: '👁️ Auge' },
-            { file: 'symbol33.png', name: '⚙️ Einstellungen' }
+            { file: 'symbol29.png', name: '🎵 Music' },
+            { file: 'symbol30.png', name: '🔒 Lock' },
+            { file: 'symbol31.png', name: '🔓 Unlock' },
+            { file: 'symbol32.png', name: '👁️ Eye' },
+            { file: 'symbol33.png', name: '⚙️ Settings' }
         ];
         
         function createSelectOptions() {
@@ -366,12 +366,12 @@
             labelCounter++;
             const id = `label${labelCounter}`;
             
-            const defaultName = defaults ? defaults.name : `Schalter ${labelCounter}`;
+            const defaultName = defaults ? defaults.name : `Switch ${labelCounter}`;
             const defaultRows = defaults ? defaults.rows : [
-                { room: 'Bad', symbol: 'symbol15.png', active: true },
-                { room: 'Gang', symbol: 'symbol15.png', active: true },
+                { room: 'Bathroom', symbol: 'symbol15.png', active: true },
+                { room: 'Hallway', symbol: 'symbol15.png', active: true },
                 { room: '', symbol: 'symbol20.png', active: true },
-                { room: 'Büro', symbol: 'symbol15.png', active: true }
+                { room: 'Office', symbol: 'symbol15.png', active: true }
             ];
             
             const card = document.createElement('div');
@@ -380,41 +380,41 @@
             
             card.innerHTML = `
                 <div class="label-header">
-                    <h3>🏷️ Etikett ${labelCounter}</h3>
+                    <h3>🏷️ Label ${labelCounter}</h3>
                     <div class="label-header-controls">
                         <input type="text" 
                                class="label-name-input" 
                                id="${id}_name" 
                                value="${defaultName}" 
-                               placeholder="Etikett-Name (optional)">
-                        <button class="delete-btn" onclick="deleteLabel('${id}')">🗑️ Löschen</button>
+                               placeholder="Label name (optional)">
+                        <button class="delete-btn" onclick="deleteLabel('${id}')">🗑️ Delete</button>
                     </div>
                 </div>
                 
                 <div class="row-editor">
-                    <label>Zeile 1:</label>
-                    <input type="text" id="${id}_room1" value="${defaultRows[0].room}" placeholder="Raumname eingeben...">
+                    <label>Row 1:</label>
+                    <input type="text" id="${id}_room1" value="${defaultRows[0].room}" placeholder="Enter room name...">
                     <select id="${id}_symbol1">${createSelectOptions()}</select>
                     <input type="checkbox" id="${id}_active1" ${defaultRows[0].active ? 'checked' : ''}>
                 </div>
                 
                 <div class="row-editor">
-                    <label>Zeile 2:</label>
-                    <input type="text" id="${id}_room2" value="${defaultRows[1].room}" placeholder="Raumname eingeben...">
+                    <label>Row 2:</label>
+                    <input type="text" id="${id}_room2" value="${defaultRows[1].room}" placeholder="Enter room name...">
                     <select id="${id}_symbol2">${createSelectOptions()}</select>
                     <input type="checkbox" id="${id}_active2" ${defaultRows[1].active ? 'checked' : ''}>
                 </div>
                 
                 <div class="row-editor">
-                    <label>Zeile 3:</label>
-                    <input type="text" id="${id}_room3" value="${defaultRows[2].room}" placeholder="Raumname eingeben...">
+                    <label>Row 3:</label>
+                    <input type="text" id="${id}_room3" value="${defaultRows[2].room}" placeholder="Enter room name...">
                     <select id="${id}_symbol3">${createSelectOptions()}</select>
                     <input type="checkbox" id="${id}_active3" ${defaultRows[2].active ? 'checked' : ''}>
                 </div>
                 
                 <div class="row-editor">
-                    <label>Zeile 4:</label>
-                    <input type="text" id="${id}_room4" value="${defaultRows[3].room}" placeholder="Raumname eingeben...">
+                    <label>Row 4:</label>
+                    <input type="text" id="${id}_room4" value="${defaultRows[3].room}" placeholder="Enter room name...">
                     <select id="${id}_symbol4">${createSelectOptions()}</select>
                     <input type="checkbox" id="${id}_active4" ${defaultRows[3].active ? 'checked' : ''}>
                 </div>
@@ -422,13 +422,13 @@
             
             document.getElementById('labelsContainer').appendChild(card);
             
-            // Setze Symbol-Standardwerte
+            // Set symbol default values
             document.getElementById(`${id}_symbol1`).value = defaultRows[0].symbol;
             document.getElementById(`${id}_symbol2`).value = defaultRows[1].symbol;
             document.getElementById(`${id}_symbol3`).value = defaultRows[2].symbol;
             document.getElementById(`${id}_symbol4`).value = defaultRows[3].symbol;
             
-            // Event Listener hinzufügen
+            // Add event listeners
             card.querySelectorAll('input, select').forEach(element => {
                 element.addEventListener('change', updatePreview);
                 element.addEventListener('input', updatePreview);
@@ -438,7 +438,7 @@
         }
         
         function deleteLabel(id) {
-            if (confirm('Möchtest du dieses Etikett wirklich löschen?')) {
+            if (confirm('Do you really want to delete this label?')) {
                 document.getElementById(id).remove();
                 updatePreview();
             }
@@ -477,7 +477,7 @@
                 const labelWrapper = document.createElement('div');
                 labelWrapper.className = 'label-with-title';
                 
-                // Titel (optional)
+                // Title (optional)
                 if (labelData.name) {
                     const title = document.createElement('div');
                     title.className = 'label-title';
@@ -485,7 +485,7 @@
                     labelWrapper.appendChild(title);
                 }
                 
-                // Etikett
+                // Label
                 const labelContainer = document.createElement('div');
                 labelContainer.className = 'label-container';
                 
@@ -499,13 +499,13 @@
                         return;
                     }
                     
-                    const einText = document.createElement('span');
-                    einText.className = 'label-text';
-                    einText.textContent = 'EIN';
+                    const onText = document.createElement('span');
+                    onText.className = 'label-text';
+                    onText.textContent = 'ON';
                     
-                    const ausText = document.createElement('span');
-                    ausText.className = 'label-text';
-                    ausText.textContent = 'AUS';
+                    const offText = document.createElement('span');
+                    offText.className = 'label-text';
+                    offText.textContent = 'OFF';
                     
                     const center = document.createElement('div');
                     center.className = 'label-center';
@@ -519,9 +519,9 @@
                     
                     center.appendChild(img);
                     
-                    rowDiv.appendChild(einText);
+                    rowDiv.appendChild(onText);
                     rowDiv.appendChild(center);
-                    rowDiv.appendChild(ausText);
+                    rowDiv.appendChild(offText);
                     
                     if (row.room) {
                         const roomName = document.createElement('span');
@@ -538,7 +538,7 @@
             });
         }
         
-        // Initialisierung mit einem Beispiel-Etikett
+        // Initialize with one example label
         addLabel();
     </script>
 </body>

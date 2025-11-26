@@ -1,199 +1,199 @@
 # Merten Instabus 6227 Label Editor
 
-Ein webbasierter Editor zur Erstellung von benutzerdefinierten Etiketten für Merten Instabus 6227 Multifunktionsschalter.
+A web-based editor for creating custom labels for Merten Instabus 6227 multifunction switches.
 
 ![Merten 6227 Label Editor](screenshot.png)
 
-## 📋 Übersicht
+## 📋 Overview
 
-Der Merten Instabus 6227 ist ein KNX-Multifunktionsschalter mit 8 programmierbaren Tastern (4 links, 4 rechts). Dieser Editor ermöglicht es, professionelle Beschriftungsetiketten für die mittlere Aussparung des Schalters zu erstellen.
+The Merten Instabus 6227 is a KNX multifunction switch with 8 programmable buttons (4 left, 4 right). This editor allows you to create professional labeling stickers for the center recess of the switch.
 
 ## ✨ Features
 
-- 🏷️ **Multi-Label-Editor**: Erstelle mehrere Etiketten gleichzeitig
-- 🎨 **33 vordefinierte Symbole**: Glühbirne, Ventilator, Schloss, Tür, und viele mehr
-- ✏️ **Frei editierbar**: Alle Raumnamen und Symbole individuell anpassbar
-- 📐 **Korrekte Maße**: Exakt 32 mm × 47 mm (3,2 cm × 4,7 cm)
-- 🖨️ **Druckfertig**: Optimiert für Selbstklebeetiketten
-- 👁️ **Live-Vorschau**: Änderungen werden sofort angezeigt
-- ☑️ **Zeilen aktivieren/deaktivieren**: Für teilweise konfigurierte Schalter
-- 🌐 **Offline nutzbar**: Keine Internetverbindung erforderlich
+- 🏷️ **Multi-Label Editor**: Create multiple labels simultaneously
+- 🎨 **33 Predefined Symbols**: Light bulb, fan, lock, door, and many more
+- ✏️ **Fully Editable**: All room names and symbols individually customizable
+- 📐 **Correct Dimensions**: Exactly 32 mm × 47 mm (3.2 cm × 4.7 cm)
+- 🖨️ **Print Ready**: Optimized for self-adhesive label sheets
+- 👁️ **Live Preview**: Changes are displayed immediately
+- ☑️ **Enable/Disable Rows**: For partially configured switches
+- 🌐 **Works Offline**: No internet connection required
 
 ## 🚀 Installation
 
-1. Repository klonen oder herunterladen:
+1. Clone or download the repository:
 ```bash
-git clone https://github.com/DEIN-USERNAME/merten-6227-label-editor.git
+git clone https://github.com/YOUR-USERNAME/merten-6227-label-editor.git
 cd merten-6227-label-editor
 ```
 
-2. Die Datei `merten_label_editor.html` im Browser öffnen
-   - Einfach doppelklicken oder
-   - Mit einem lokalen Webserver öffnen
+2. Open the `merten_label_editor.html` file in your browser
+   - Simply double-click or
+   - Open with a local web server
 
-## 📁 Projektstruktur
+## 📁 Project Structure
 
 ```
 merten-6227-label-editor/
-├── merten_label_editor.html    # Haupt-Editor-Datei
-├── Symbols/                     # Ordner mit allen Symbol-Icons
-│   ├── symbol1.png             # Power-Symbol
-│   ├── symbol15.png            # Glühbirne
-│   ├── symbol20.png            # Ventilator
-│   └── ...                     # 33 Symbole insgesamt
-└── README.md                   # Diese Datei
+├── merten_label_editor.html    # Main editor file
+├── Symbols/                     # Folder with all symbol icons
+│   ├── symbol1.png             # Power symbol
+│   ├── symbol15.png            # Light bulb
+│   ├── symbol20.png            # Fan
+│   └── ...                     # 33 symbols total
+└── README.md                   # This file
 ```
 
-## 🎯 Verwendung
+## 🎯 Usage
 
-### Schritt 1: Editor öffnen
-Öffne `merten_label_editor.html` in einem modernen Webbrowser (Chrome, Firefox, Edge, Safari).
+### Step 1: Open Editor
+Open `merten_label_editor.html` in a modern web browser (Chrome, Firefox, Edge, Safari).
 
-### Schritt 2: Etiketten erstellen
-1. **Neues Etikett hinzufügen**: Klicke auf "➕ Neues Etikett hinzufügen"
-2. **Namen vergeben**: Gib dem Etikett einen Namen (z.B. "Wohnzimmer", "1. OG")
-3. **Zeilen konfigurieren**:
-   - Gib Raumnamen ein (z.B. "Bad", "Gang", "Küche")
-   - Wähle passende Symbole aus dem Dropdown
-   - Deaktiviere nicht benötigte Zeilen mit der Checkbox
-4. **Vorschau prüfen**: Die Änderungen werden automatisch in der Vorschau angezeigt
+### Step 2: Create Labels
+1. **Add New Label**: Click on "➕ Add New Label"
+2. **Assign Name**: Give the label a name (e.g., "Living Room", "1st Floor")
+3. **Configure Rows**:
+   - Enter room names (e.g., "Bathroom", "Hallway", "Kitchen")
+   - Select appropriate symbols from the dropdown
+   - Disable unused rows with the checkbox
+4. **Check Preview**: Changes are automatically displayed in the preview
 
-### Schritt 3: Drucken
-1. Klicke auf "🖨️ Alle Etiketten drucken"
-2. Im Druckdialog:
-   - Wähle **"Tatsächliche Größe"** oder **"100% Skalierung"**
-   - Deaktiviere **"An Seite anpassen"**
-3. Drucke auf selbstklebende Etikettenfolie oder normales Papier
-4. Schneide entlang der gestrichelten Linien aus
+### Step 3: Print
+1. Click on "🖨️ Print All Labels"
+2. In the print dialog:
+   - Select **"Actual Size"** or **"100% Scale"**
+   - Disable **"Fit to Page"**
+3. Print on self-adhesive label sheets or regular paper
+4. Cut along the dashed lines
 
-## 📐 Technische Spezifikationen
+## 📐 Technical Specifications
 
-- **Etikett-Maße**: 32 mm × 47 mm (3,2 cm × 4,7 cm)
-- **Zeilen pro Etikett**: 4 (jeweils 11,75 mm hoch)
-- **Symbol-Format**: PNG, optimiert für 5-6 mm Höhe
-- **Schriftgröße**: 2,5 mm für optimale Lesbarkeit
-- **Layout**: EIN - [Symbol] - AUS pro Zeile
+- **Label Dimensions**: 32 mm × 47 mm (3.2 cm × 4.7 cm)
+- **Rows per Label**: 4 (each 11.75 mm high)
+- **Symbol Format**: PNG, optimized for 5-6 mm height
+- **Font Size**: 2.5 mm for optimal readability
+- **Layout**: ON - [Symbol] - OFF per row
 
-## 🎨 Verfügbare Symbole
+## 🎨 Available Symbols
 
-Der Editor enthält 33 vordefinierte Symbole:
+The editor includes 33 predefined symbols:
 
-| Kategorie | Symbole |
+| Category | Symbols |
 |-----------|---------|
-| **Licht** | Glühbirne, Sonne, Mond |
-| **Steuerung** | Power, Plus, Minus, Pfeile |
-| **Geräte** | Ventilator, Heizung, Lautsprecher, Monitor |
-| **Sicherheit** | Schloss, Schlüssel, Auge, Tür |
-| **Sonstiges** | Glocke, Uhr, Musik, Einstellungen, Haus |
+| **Light** | Bulb, Sun, Moon |
+| **Control** | Power, Plus, Minus, Arrows |
+| **Devices** | Fan, Heater, Speaker, Monitor |
+| **Security** | Lock, Key, Eye, Door |
+| **Miscellaneous** | Bell, Clock, Music, Settings, House |
 
-## 🛠️ Anpassungen
+## 🛠️ Customization
 
-### Eigene Symbole hinzufügen
+### Adding Custom Symbols
 
-1. Erstelle PNG-Bilder mit transparentem Hintergrund
-2. Empfohlene Größe: 300x300 Pixel
-3. Speichere sie im `Symbols/`-Ordner als `symbol34.png`, `symbol35.png`, etc.
-4. Füge im HTML-Code im `symbols`-Array neue Einträge hinzu:
+1. Create PNG images with transparent background
+2. Recommended size: 300x300 pixels
+3. Save them in the `Symbols/` folder as `symbol34.png`, `symbol35.png`, etc.
+4. Add new entries in the HTML code in the `symbols` array:
 
 ```javascript
 const symbols = [
-    // ... bestehende Symbole
-    { file: 'symbol34.png', name: '🆕 Dein Symbol' }
+    // ... existing symbols
+    { file: 'symbol34.png', name: '🆕 Your Symbol' }
 ];
 ```
 
-## 🖨️ Druck-Tipps
+## 🖨️ Printing Tips
 
-### Empfohlene Materialien
-- **Selbstklebende Etikettenfolie**: Weiß, matt oder glänzend
-- **Papierformat**: A4
-- **Drucker**: Tintenstrahl oder Laser
+### Recommended Materials
+- **Self-adhesive Label Sheets**: White, matte or glossy
+- **Paper Format**: A4
+- **Printer**: Inkjet or Laser
 
-### Druckeinstellungen
-- **Qualität**: Höchste Qualität / Fotoqualität
-- **Skalierung**: 100% / Tatsächliche Größe
-- **Ausrichtung**: Hochformat
-- **Ränder**: Standard
+### Print Settings
+- **Quality**: Highest Quality / Photo Quality
+- **Scale**: 100% / Actual Size
+- **Orientation**: Portrait
+- **Margins**: Default
 
-### Nach dem Druck
-1. Schneide entlang der gestrichelten Linien
-2. Teste die Passform am Schalter
-3. Reinige die Schalteroberfläche vor dem Aufkleben
-4. Klebe das Etikett mittig auf
+### After Printing
+1. Cut along the dashed lines
+2. Test the fit on the switch
+3. Clean the switch surface before applying
+4. Apply the label centered
 
-## 🔧 Systemanforderungen
+## 🔧 System Requirements
 
-- **Browser**: Moderner Webbrowser mit JavaScript-Unterstützung
+- **Browser**: Modern web browser with JavaScript support
   - Chrome 90+
   - Firefox 88+
   - Safari 14+
   - Edge 90+
-- **Betriebssystem**: Windows, macOS, Linux
-- **Drucker**: Beliebiger Drucker mit A4-Unterstützung
+- **Operating System**: Windows, macOS, Linux
+- **Printer**: Any printer with A4 support
 
-## 📝 Lizenz
+## 📝 License
 
-Dieses Projekt ist unter der MIT-Lizenz lizenziert - siehe [LICENSE](LICENSE) Datei für Details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🤝 Beiträge
+## 🤝 Contributing
 
-Beiträge sind willkommen! Hier sind einige Möglichkeiten, wie du helfen kannst:
+Contributions are welcome! Here are some ways you can help:
 
-- 🐛 Fehler melden
-- 💡 Neue Features vorschlagen
-- 🎨 Neue Symbole hinzufügen
-- 📖 Dokumentation verbessern
-- 🌍 Übersetzungen hinzufügen
+- 🐛 Report bugs
+- 💡 Suggest new features
+- 🎨 Add new symbols
+- 📖 Improve documentation
+- 🌍 Add translations
 
 ### Pull Requests
-1. Forke das Repository
-2. Erstelle einen Feature-Branch (`git checkout -b feature/NeuesFeature`)
-3. Committe deine Änderungen (`git commit -m 'Neues Feature hinzugefügt'`)
-4. Pushe zum Branch (`git push origin feature/NeuesFeature`)
-5. Öffne einen Pull Request
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/NewFeature`)
+3. Commit your changes (`git commit -m 'Add new feature'`)
+4. Push to the branch (`git push origin feature/NewFeature`)
+5. Open a Pull Request
 
-## 📧 Kontakt & Support
+## 📧 Contact & Support
 
-- **Issues**: Nutze die GitHub Issues für Fehlerberichte und Feature-Requests
-- **Diskussionen**: GitHub Discussions für allgemeine Fragen
+- **Issues**: Use GitHub Issues for bug reports and feature requests
+- **Discussions**: GitHub Discussions for general questions
 
-## ⚙️ Kompatibilität
+## ⚙️ Compatibility
 
-Getestet mit:
-- ✅ Merten Instabus 6227 Multifunktionsschalter
-- ✅ Verschiedene Browser (Chrome, Firefox, Safari, Edge)
+Tested with:
+- ✅ Merten Instabus 6227 Multifunction Switch
+- ✅ Various browsers (Chrome, Firefox, Safari, Edge)
 - ✅ Windows 10/11, macOS, Linux
 
 ## 🎯 Roadmap
 
-Geplante Features:
-- [ ] Export als PDF
-- [ ] Vorlagen-Bibliothek für häufige Räume
-- [ ] Mehrsprachige Unterstützung (EN, DE, FR)
-- [ ] Dark Mode
-- [ ] Symbol-Upload-Funktion
-- [ ] QR-Code-Integration für digitale Dokumentation
+Planned features:
+- [ ] Export as PDF
+- [ ] Template library for common rooms
+- [ ] Multi-language support (EN, DE, FR)
+- [ ] Dark mode
+- [ ] Symbol upload function
+- [ ] QR code integration for digital documentation
 
-## 📚 Weiterführende Links
+## 📚 Further Links
 
-- [Merten Produktseite](https://www.merten.de)
+- [Merten Product Page](https://www.merten.de)
 - [KNX Standard](https://www.knx.org)
-- [Instabus EIB/KNX](https://de.wikipedia.org/wiki/KNX-Standard)
+- [Instabus EIB/KNX](https://en.wikipedia.org/wiki/KNX_(standard))
 
-## 👏 Danksagungen
+## 👏 Acknowledgments
 
-- Icons/Symbole: Eigene Erstellung oder lizenzfreie Quellen
-- Merten/Schneider Electric für die Entwicklung des 6227 Schalters
+- Icons/Symbols: Custom creation or royalty-free sources
+- Merten/Schneider Electric for developing the 6227 switch
 
 ## 📄 Changelog
 
 ### Version 1.0.0 (2024-11-26)
-- ✨ Initiales Release
-- 🏷️ Multi-Label-Editor
-- 🎨 33 vordefinierte Symbole
-- 🖨️ Druckfunktion mit korrekten Maßen
-- ✏️ Frei editierbare Etiketten
+- ✨ Initial release
+- 🏷️ Multi-label editor
+- 🎨 33 predefined symbols
+- 🖨️ Print function with correct dimensions
+- ✏️ Fully editable labels
 
 ---
 
-**Hinweis**: Dieses Projekt ist nicht offiziell mit Merten oder Schneider Electric verbunden.
+**Note**: This project is not officially affiliated with Merten or Schneider Electric.
