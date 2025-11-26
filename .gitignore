@@ -1,0 +1,27 @@
+# OS-spezifische Dateien
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor-Backups
+*~
+*.swp
+*.swo
+*~
+
+# Temporäre Dateien
+*.tmp
+*.temp
+
+# Log-Dateien
+*.log
+
+# IDE-Dateien
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Backup-Dateien
+*.bak
+*.backup

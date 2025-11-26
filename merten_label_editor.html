@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Merten 6227 Etikett Editor - Multi-Label</title>
+    <style>
+        @page {
+            size: A4;
+            margin: 0;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            padding: 20px;
+        }
+        
+        .editor-panel {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .editor-panel h1 {
+            margin-bottom: 10px;
+            color: #333;
+            font-size: 24px;
+        }
+        
+        .info-text {
+            margin-bottom: 15px;
+            color: #666;
+            padding: 10px;
+            background: #f9f9f9;
+            border-radius: 4px;
+        }
+        
+        .labels-container {
+            margin-top: 20px;
+        }
+        
+        .label-editor-card {
+            background: #f9f9f9;
+            border: 2px solid #ddd;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .label-editor-card.active {
+            border-color: #4CAF50;
+            background: #f0f9f0;
+        }
+        
+        .label-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #ddd;
+        }
+        
+        .label-header h3 {
+            color: #333;
+            font-size: 18px;
+            margin: 0;
+        }
+        
+        .label-header-controls {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .label-name-input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            width: 200px;
+        }
+        
+        .delete-btn {
+            background: #f44336;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .delete-btn:hover {
+            background: #d32f2f;
+        }
+        
+        .row-editor {
+            display: grid;
+            grid-template-columns: 80px 1fr 200px 60px;
+            gap: 10px;
+            align-items: center;
+            margin-bottom: 10px;
+            padding: 10px;
+            background: white;
+            border-radius: 4px;
+        }
+        
+        .row-editor label {
+            font-weight: bold;
+            color: #555;
+        }
+        
+        .row-editor input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        
+        .row-editor select {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            background: white;
+        }
+        
+        .row-editor input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+        }
+        
+        .button-group {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        
+        .btn-primary {
+            background: #4CAF50;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #45a049;
+        }
+        
+        .btn-secondary {
+            background: #2196F3;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #0b7dda;
+        }
+        
+        .btn-add {
+            background: #FF9800;
+            color: white;
+        }
+        
+        .btn-add:hover {
+            background: #F57C00;
+        }
+        
+        .print-area {
+            background: white;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .labels-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10mm;
+        }
+        
+        .label-with-title {
+            text-align: center;
+        }
+        
+        .label-title {
+            font-size: 3mm;
+            font-weight: bold;
+            margin-bottom: 2mm;
+            color: #333;
+        }
+        
+        .label-container {
+            width: 32mm;
+            height: 47mm;
+            border: 2px dashed #000;
+            background: white;
+            position: relative;
+        }
+        
+        .label-row {
+            height: 11.75mm;
+            border-bottom: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 2mm;
+            position: relative;
+        }
+        
+        .label-row:last-child {
+            border-bottom: none;
+        }
+        
+        .label-row.empty {
+            border-bottom: 1px solid #ccc;
+        }
+        
+        .label-text {
+            font-size: 2.5mm;
+            font-weight: normal;
+            color: #000;
+        }
+        
+        .label-center {
+            position: absolute;
+            left: 50%;
+            top: 30%;
+            transform: translateX(-50%);
+            text-align: center;
+        }
+        
+        .room-name {
+            position: absolute;
+            left: 50%;
+            bottom: 0.5mm;
+            transform: translateX(-50%);
+            font-size: 2.5mm;
+            color: #000;
+            white-space: nowrap;
+            max-width: 26mm;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .icon-img {
+            height: 5mm;
+            width: auto;
+            max-width: 6mm;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .editor-panel {
+                display: none !important;
+            }
+            
+            .print-area {
+                padding: 10mm;
+                box-shadow: none;
+                border-radius: 0;
+            }
+            
+            .labels-grid {
+                gap: 8mm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="editor-panel">
+        <h1>🏷️ Merten Instabus 6227 - Multi-Label Editor</h1>
+        <div class="info-text">
+            <strong>Maße:</strong> 32 mm × 47 mm (3,2 cm × 4,7 cm)<br>
+            <strong>Anleitung:</strong> Erstelle mehrere Etiketten gleichzeitig. Aktiviere/Deaktiviere Zeilen mit Checkboxen.
+        </div>
+        
+        <div class="button-group">
+            <button class="btn-add" onclick="addLabel()">➕ Neues Etikett hinzufügen</button>
+            <button class="btn-secondary" onclick="updatePreview()">🔄 Vorschau aktualisieren</button>
+            <button class="btn-primary" onclick="window.print()">🖨️ Alle Etiketten drucken</button>
+        </div>
+        
+        <div id="labelsContainer" class="labels-container">
+            <!-- Labels werden hier dynamisch hinzugefügt -->
+        </div>
+    </div>
+    
+    <div class="print-area">
+        <div class="labels-grid" id="printPreview">
+            <!-- Vorschau wird hier erstellt -->
+        </div>
+    </div>
+    
+    <script>
+        const symbolPath = './Symbols/';
+        let labelCounter = 0;
+        
+        // Alle verfügbaren Symbole
+        const symbols = [
+            { file: 'symbol1.png', name: '⚡ Power' },
+            { file: 'symbol2.png', name: '⭕ Kreis' },
+            { file: 'symbol3.png', name: '⚡|⭕' },
+            { file: 'symbol4.png', name: '⚡|+' },
+            { file: 'symbol5.png', name: '⭕|-' },
+            { file: 'symbol6.png', name: '📶 Signal' },
+            { file: 'symbol7.png', name: '🔽🔼' },
+            { file: 'symbol8.png', name: '🔼 Dreieck' },
+            { file: 'symbol9.png', name: '🔽 Dreieck' },
+            { file: 'symbol10.png', name: '➕ Plus' },
+            { file: 'symbol11.png', name: '➖ Minus' },
+            { file: 'symbol12.png', name: '🔼🔽 Pfeile' },
+            { file: 'symbol13.png', name: '⬆️ Pfeil' },
+            { file: 'symbol14.png', name: '⬇️ Pfeil' },
+            { file: 'symbol15.png', name: '💡 Glühbirne' },
+            { file: 'symbol16.png', name: '🔔 Glocke' },
+            { file: 'symbol17.png', name: '🔑 Schlüssel' },
+            { file: 'symbol18.png', name: '🌡️ Heizung' },
+            { file: 'symbol19.png', name: '🌡️ Thermometer' },
+            { file: 'symbol20.png', name: '🌀 Ventilator' },
+            { file: 'symbol21.png', name: '❗ Ausrufezeichen' },
+            { file: 'symbol22.png', name: '🔊 Lautsprecher' },
+            { file: 'symbol23.png', name: '🚪 Tür' },
+            { file: 'symbol24.png', name: '🏠 Haus' },
+            { file: 'symbol25.png', name: '🌙 Mond' },
+            { file: 'symbol26.png', name: '☀️ Sonne' },
+            { file: 'symbol27.png', name: '⏰ Uhr' },
+            { file: 'symbol28.png', name: '📺 Monitor' },
+            { file: 'symbol29.png', name: '🎵 Musik' },
+            { file: 'symbol30.png', name: '🔒 Schloss' },
+            { file: 'symbol31.png', name: '🔓 Offen' },
+            { file: 'symbol32.png', name: '👁️ Auge' },
+            { file: 'symbol33.png', name: '⚙️ Einstellungen' }
+        ];
+        
+        function createSelectOptions() {
+            let html = '';
+            symbols.forEach(symbol => {
+                html += `<option value="${symbol.file}">${symbol.name}</option>`;
+            });
+            return html;
+        }
+        
+        function addLabel(defaults = null) {
+            labelCounter++;
+            const id = `label${labelCounter}`;
+            
+            const defaultName = defaults ? defaults.name : `Schalter ${labelCounter}`;
+            const defaultRows = defaults ? defaults.rows : [
+                { room: 'Bad', symbol: 'symbol15.png', active: true },
+                { room: 'Gang', symbol: 'symbol15.png', active: true },
+                { room: '', symbol: 'symbol20.png', active: true },
+                { room: 'Büro', symbol: 'symbol15.png', active: true }
+            ];
+            
+            const card = document.createElement('div');
+            card.className = 'label-editor-card active';
+            card.id = id;
+            
+            card.innerHTML = `
+                <div class="label-header">
+                    <h3>🏷️ Etikett ${labelCounter}</h3>
+                    <div class="label-header-controls">
+                        <input type="text" 
+                               class="label-name-input" 
+                               id="${id}_name" 
+                               value="${defaultName}" 
+                               placeholder="Etikett-Name (optional)">
+                        <button class="delete-btn" onclick="deleteLabel('${id}')">🗑️ Löschen</button>
+                    </div>
+                </div>
+                
+                <div class="row-editor">
+                    <label>Zeile 1:</label>
+                    <input type="text" id="${id}_room1" value="${defaultRows[0].room}" placeholder="Raumname eingeben...">
+                    <select id="${id}_symbol1">${createSelectOptions()}</select>
+                    <input type="checkbox" id="${id}_active1" ${defaultRows[0].active ? 'checked' : ''}>
+                </div>
+                
+                <div class="row-editor">
+                    <label>Zeile 2:</label>
+                    <input type="text" id="${id}_room2" value="${defaultRows[1].room}" placeholder="Raumname eingeben...">
+                    <select id="${id}_symbol2">${createSelectOptions()}</select>
+                    <input type="checkbox" id="${id}_active2" ${defaultRows[1].active ? 'checked' : ''}>
+                </div>
+                
+                <div class="row-editor">
+                    <label>Zeile 3:</label>
+                    <input type="text" id="${id}_room3" value="${defaultRows[2].room}" placeholder="Raumname eingeben...">
+                    <select id="${id}_symbol3">${createSelectOptions()}</select>
+                    <input type="checkbox" id="${id}_active3" ${defaultRows[2].active ? 'checked' : ''}>
+                </div>
+                
+                <div class="row-editor">
+                    <label>Zeile 4:</label>
+                    <input type="text" id="${id}_room4" value="${defaultRows[3].room}" placeholder="Raumname eingeben...">
+                    <select id="${id}_symbol4">${createSelectOptions()}</select>
+                    <input type="checkbox" id="${id}_active4" ${defaultRows[3].active ? 'checked' : ''}>
+                </div>
+            `;
+            
+            document.getElementById('labelsContainer').appendChild(card);
+            
+            // Setze Symbol-Standardwerte
+            document.getElementById(`${id}_symbol1`).value = defaultRows[0].symbol;
+            document.getElementById(`${id}_symbol2`).value = defaultRows[1].symbol;
+            document.getElementById(`${id}_symbol3`).value = defaultRows[2].symbol;
+            document.getElementById(`${id}_symbol4`).value = defaultRows[3].symbol;
+            
+            // Event Listener hinzufügen
+            card.querySelectorAll('input, select').forEach(element => {
+                element.addEventListener('change', updatePreview);
+                element.addEventListener('input', updatePreview);
+            });
+            
+            updatePreview();
+        }
+        
+        function deleteLabel(id) {
+            if (confirm('Möchtest du dieses Etikett wirklich löschen?')) {
+                document.getElementById(id).remove();
+                updatePreview();
+            }
+        }
+        
+        function getAllLabels() {
+            const labels = [];
+            const cards = document.querySelectorAll('.label-editor-card');
+            
+            cards.forEach(card => {
+                const id = card.id;
+                const name = document.getElementById(`${id}_name`).value;
+                const rows = [];
+                
+                for (let i = 1; i <= 4; i++) {
+                    rows.push({
+                        active: document.getElementById(`${id}_active${i}`).checked,
+                        room: document.getElementById(`${id}_room${i}`).value,
+                        symbol: document.getElementById(`${id}_symbol${i}`).value
+                    });
+                }
+                
+                labels.push({ name, rows });
+            });
+            
+            return labels;
+        }
+        
+        function updatePreview() {
+            const container = document.getElementById('printPreview');
+            container.innerHTML = '';
+            
+            const labels = getAllLabels();
+            
+            labels.forEach(labelData => {
+                const labelWrapper = document.createElement('div');
+                labelWrapper.className = 'label-with-title';
+                
+                // Titel (optional)
+                if (labelData.name) {
+                    const title = document.createElement('div');
+                    title.className = 'label-title';
+                    title.textContent = labelData.name;
+                    labelWrapper.appendChild(title);
+                }
+                
+                // Etikett
+                const labelContainer = document.createElement('div');
+                labelContainer.className = 'label-container';
+                
+                labelData.rows.forEach(row => {
+                    const rowDiv = document.createElement('div');
+                    rowDiv.className = 'label-row';
+                    
+                    if (!row.active) {
+                        rowDiv.classList.add('empty');
+                        labelContainer.appendChild(rowDiv);
+                        return;
+                    }
+                    
+                    const einText = document.createElement('span');
+                    einText.className = 'label-text';
+                    einText.textContent = 'EIN';
+                    
+                    const ausText = document.createElement('span');
+                    ausText.className = 'label-text';
+                    ausText.textContent = 'AUS';
+                    
+                    const center = document.createElement('div');
+                    center.className = 'label-center';
+                    
+                    const img = document.createElement('img');
+                    img.className = 'icon-img';
+                    img.src = symbolPath + row.symbol;
+                    img.onerror = function() {
+                        this.style.display = 'none';
+                    };
+                    
+                    center.appendChild(img);
+                    
+                    rowDiv.appendChild(einText);
+                    rowDiv.appendChild(center);
+                    rowDiv.appendChild(ausText);
+                    
+                    if (row.room) {
+                        const roomName = document.createElement('span');
+                        roomName.className = 'room-name';
+                        roomName.textContent = row.room;
+                        rowDiv.appendChild(roomName);
+                    }
+                    
+                    labelContainer.appendChild(rowDiv);
+                });
+                
+                labelWrapper.appendChild(labelContainer);
+                container.appendChild(labelWrapper);
+            });
+        }
+        
+        // Initialisierung mit einem Beispiel-Etikett
+        addLabel();
+    </script>
+</body>
+</html>
