@@ -2,6 +2,8 @@
 
 A web-based editor for creating custom labels for Merten Instabus 6227 multifunction switches.
 
+Created with claude.ai
+
 ![Merten 6227 Label Editor](screenshot.png)
 
 ## 📋 Overview
@@ -163,16 +165,6 @@ Tested with:
 - ✅ Merten Instabus 6227 Multifunction Switch
 - ✅ Various browsers (Chrome, Firefox, Safari, Edge)
 - ✅ Windows 10/11, macOS, Linux
-
-## 🎯 Roadmap
-
-Planned features:
-- [ ] Export as PDF
-- [ ] Template library for common rooms
-- [ ] Multi-language support (EN, DE, FR)
-- [ ] Dark mode
-- [ ] Symbol upload function
-- [ ] QR code integration for digital documentation
 
 ## 📚 Further Links
 
